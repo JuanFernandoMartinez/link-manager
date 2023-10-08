@@ -1,3 +1,4 @@
+import { linkSync } from "fs";
 import { pl } from "./connection";
 import { Link, Category, Tag } from "@/types/Link";
 
@@ -13,12 +14,14 @@ let getAllLinks = async ()=>{
     let {rows} = await pl.query("SELECT * FROM link")
     let links: Link[] = []
     rows.forEach(row => {
-        links.push({
+
+        let link: Link = {
             id: row.id,
             title: row.title,
             category: {id: 1, title:  "Test"},
             tags: []
-        })
+        }
+        links.push(link)
     })
 
     return links
