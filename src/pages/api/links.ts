@@ -1,19 +1,20 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getAllLinks } from '@/database/repository'
+import { Link } from '@/types/Link'
 
 
-import { pl } from '@/database/connection'
 
 type Data = {
-  name: string[]
+  links: Link[]
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { rows } = await pl.query('SELECT * FROM link')
-  const names = rows.map(row => row.name)
-  res.status(200).json({ name: names })
+  let links: Link[] = await getAllLinks()
+  const data: Data = { links }
+  res.status(200).json(data)
 }
 
