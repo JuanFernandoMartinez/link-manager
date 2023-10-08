@@ -12,7 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { rows } = await pl.query('SELECT * FROM links')
+  const { rows } = await pl.query('SELECT * FROM link')
   const names = rows.map(row => row.name)
   res.status(200).json({ name: names })
 }
