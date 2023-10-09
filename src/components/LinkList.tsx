@@ -1,20 +1,32 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
+import {useState} from 'react'
+import { Link } from "@/types/Link";
 
 
-
-/* async function getLinksData(){
-    const url:string = process.env.BASE_URL+"/something";
-    const res = await fetch(url);
-    
-    if (!res.ok){
-        throw new Error("Failed to load data")
-    }
-
-    return await res.json()
-} */
 
 export default  function LinkList(){
+
+    const [links, setLinks] = useState([]) // [] is the initial value of the state
+    useEffect(()=>{
+        async function getLinksData(){
+            const res = await fetch('/api/getLinks')
+            const newLinks = await res.json()
+            setLinks(newLinks)
+        }
+    }, [])
     //const data = await getLinksData()
-    return (<div></div>)
+    return (
+        <div>
+            <h1>Links</h1>
+            {links.map((link: Link, index: number) => (
+                <div key={index}>
+                    <h2>{link.id}</h2>
+                    <p>{link.title}</p>
+                    <a href={link.link}>Click here</a>
+                </div>
+            ))}
+        </div>
+    );
+    
 }
 
