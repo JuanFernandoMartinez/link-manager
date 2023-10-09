@@ -1,20 +1,18 @@
 import { ReactElement, useEffect } from "react";
 import {useState} from 'react'
 import { Link } from "@/types/Link";
+import { getAllLinks } from "@/database/repository";
 
 
+async function getLinksData() {
+    const data = await getAllLinks();
+    return data;
+}
 
-export default  function LinkList(){
+export default async function LinkList(){
 
-    const [links, setLinks] = useState([]) // [] is the initial value of the state
-    useEffect(()=>{
-        async function getLinksData(){
-            const res = await fetch('/api/getLinks')
-            const newLinks = await res.json()
-            console.log(newLinks)
-            setLinks(newLinks)
-        }
-    }, [])
+    
+   const links = await getLinksData()
     //const data = await getLinksData()
     return (
         <div>
