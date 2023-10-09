@@ -11,6 +11,7 @@ export default  function LinkList(){
         async function getLinksData(){
             const res = await fetch('/api/getLinks')
             const newLinks = await res.json()
+            console.log(newLinks)
             setLinks(newLinks)
         }
     }, [])
