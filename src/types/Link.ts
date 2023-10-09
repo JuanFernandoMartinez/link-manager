@@ -12,6 +12,7 @@ type Tag = {
 type Link = {
     id: number,
     title: string,
+    link: string,
     category: Category, 
     tags: Tag[]
 }

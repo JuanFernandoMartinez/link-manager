@@ -12,12 +12,14 @@ let getLinkCategorie = async (cat: String)=>{
 
 let getAllLinks = async ()=>{
     let {rows} = await pl.query("SELECT * FROM link")
+    console.log(rows)
     let links: Link[] = []
     rows.forEach(row => {
 
         let link: Link = {
-            id: row.id,
-            title: row.title,
+            id: row.link_id,
+            title: row.link_title,
+            link: row.link_link,
             category: {id: 1, title:  "Test"},
             tags: []
         }
