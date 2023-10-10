@@ -1,4 +1,5 @@
 
+import LinkList from "@/components/LinkList";
 import type { Link } from "@/types/Link";
 import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 
@@ -16,5 +17,8 @@ export default  function Home({
   links,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   console.log(links)
-  return <h1>hello</h1>
+  return <>
+    <h1>hello</h1>
+    <LinkList links={links.links} />
+  </>
 }
