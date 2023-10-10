@@ -1,19 +1,12 @@
-import { ReactElement, useEffect } from "react";
-import {useState} from 'react'
+
 import { Link } from "@/types/Link";
-import { getAllLinks } from "@/database/repository";
 
+type LinkListProps = {
+    links: Link[];
+};
 
-async function getLinksData() {
-    const data = await getAllLinks();
-    return data;
-}
-
-export default async function LinkList(){
-
-    
-   const links = await getLinksData()
-    //const data = await getLinksData()
+export default function LinkList({ links= [] }: LinkListProps) {
+    console.log(links);
     return (
         <div>
             <h1>Links</h1>
@@ -26,6 +19,8 @@ export default async function LinkList(){
             ))}
         </div>
     );
-    
 }
+
+    
+   
 
