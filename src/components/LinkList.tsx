@@ -11,11 +11,11 @@ export default function LinkList({ links= [] }: LinkListProps) {
         <div>
             <h1>Links</h1>
             {links.map((link: Link, index: number) => (
-                <div key={index}>
-                    <h2>{link.id}</h2>
-                    <p>{link.title}</p>
-                    <a href={link.link}>Click here</a>
-                </div>
+                <a key={index}
+                href={link.link}
+                >
+                    <b>{link.id}</b> {"  "} {link.title}
+                </a>
             ))}
         </div>
     );
